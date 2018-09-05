@@ -25,7 +25,7 @@ SECRET_KEY = '&o*2r-d+36d4=)9=4d8(w%2io^9l7utk==%r&+3z06!h1aag*d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['teledjango.herokuapp.com']
 
 
 # Application definition
