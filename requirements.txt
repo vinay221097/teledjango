@@ -12,4 +12,4 @@ pyasn1==0.4.4
 pytz==2018.5
 rsa==3.4.2
 Telethon==0.18.2
-whitenoise==4.0
+whitenoise==3.2
