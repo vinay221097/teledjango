@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<style type="text/css">
+		body{
+			margin:20 20 20 20;
+		}
+		input[type=submit]{
+	font-size: 16px;
+	color: black;
+	font-family: sans-serif;
+	font-style: italic;
+	border: 2 px solid green;
+	border-radius: 4px;
+	background-color: yellow;
+	vertical-align: middle;}
+	</style>
+</head>
+<body>
+	<form method="POST" action="/login1/">
+		{% csrf_token%}
+<input type="text" placeholder="Enter your phone number" name="phone_number">
+<input type="submit" value="submit">
+</form>
+</body>
+</html>

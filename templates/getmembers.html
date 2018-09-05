@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		get members
+	</title>
+	<style type="text/css">
+		body{
+	font-size: 16px;
+	color: black;
+	font-family: sans-serif;
+	font-style: italic;
+}
+	</style>
+</head>
+<body>
+<form method="POST" action="/getmembers/">
+		{% csrf_token%}<center><p>Enter group id</p>&nbsp;&nbsp;
+<input type="text" placeholder="Enter group id" name="groupid"><br/><br/>
+<input type="submit" value="submit"></center>
+</body>
+</html>
