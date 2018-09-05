@@ -17,11 +17,12 @@ api_hash = '0ae0a703c7a845b4a710b8581a92e7be'
 phone_number='+919234566892'
 global client 
 global phone1
-client = TelegramClient(phone_number, api_id, api_hash)
-client.session.report_errors = False
-client.connect()
+
 change=True
 def index(requests):
+    client = TelegramClient(phone_number, api_id, api_hash)
+    client.session.report_errors = False
+    client.connect()
     context={}
     if not client.is_user_authorized():
         return HttpResponseRedirect("login/")
@@ -52,7 +53,7 @@ def otp(request):
     print(phone1)
     if request.method=='POST':
         otp_value=request.POST.get("otp")
-        client.sign_in(phone1,otp_value,api_hash)
+        client.sign_in(phone1,otp_value)
         return HttpResponseRedirect("/main/")
     return render(request,"otp.html",context)
 def abc(request):
