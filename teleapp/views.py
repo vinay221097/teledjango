@@ -52,7 +52,7 @@ def otp(request):
     print(phone1)
     if request.method=='POST':
         otp_value=request.POST.get("otp")
-        client.sign_in(phone1,otp_value)
+        client.sign_in(phone1,otp_value,api_hash)
         return HttpResponseRedirect("/main/")
     return render(request,"otp.html",context)
 def abc(request):
