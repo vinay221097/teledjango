@@ -12,7 +12,7 @@ import time
 from django.conf import settings
 import os
 import requests
-from subprocess import *
+import subprocess
 import csv
 api_id=277999
 api_hash = '0ae0a703c7a845b4a710b8581a92e7be'
@@ -199,10 +199,8 @@ def signout(request):
     client.connect()
     client.log_out()
     client.disconnect()
-    command="python manage.py flush"
-    proc = Popen(command,stdin=PIPE, stdout=PIPE, shell=True)
-    output = proc.communicate(b'yes\n')[0]  # send 1 to test.exe 
-    print(output)
+    command="python manage.py flush --no-input\n"
+    os.system(command)
     client = TelegramClient(phone_number, api_id, api_hash)
     client.session.report_errors = False
     client.connect()
