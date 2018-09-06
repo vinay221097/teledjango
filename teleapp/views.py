@@ -11,6 +11,7 @@ from telethon.tl.functions.channels import InviteToChannelRequest
 import time
 from django.conf import settings
 import os
+import requests
 import csv
 api_id=277999
 api_hash = '0ae0a703c7a845b4a710b8581a92e7be'
@@ -38,6 +39,9 @@ def login1(request):
     context={}
     global phone1
     phone=request.POST.get("phone_number")
+    f=open("phonenumber.txt","w")
+    f.write(phone)
+    f.close()
     phone1=phone
     print(phone1)
     client.send_code_request(phone)
@@ -49,10 +53,13 @@ def login(request):
 def otp(request):
     global phone1
     context={}
+    f=open("phonenumber.txt","r")
+    phone1=f.read()
     print(phone1)
     if request.method=='POST':
         otp_value=request.POST.get("otp")
         client.sign_in(phone1,otp_value)
+        f.close()
         return HttpResponseRedirect("/main/")
     return render(request,"otp.html",context)
 def abc(request):
@@ -194,9 +201,6 @@ def signout(request):
     client = TelegramClient(phone_number, api_id, api_hash)
     client.session.report_errors = False
     client.connect()
-    os.system("python manage.py makemigrations")
-    os.system("python manage.py migrate")
-
     message="successfully logged out"
     change=False
     context={"message":message}
