@@ -12,6 +12,7 @@ import time
 from django.conf import settings
 import os
 import requests
+from subprocess import *
 import csv
 api_id=277999
 api_hash = '0ae0a703c7a845b4a710b8581a92e7be'
@@ -198,10 +199,15 @@ def signout(request):
     client.connect()
     client.log_out()
     client.disconnect()
+    command="python manage.py flush"
+    proc = Popen(command,stdin=PIPE, stdout=PIPE, shell=True)
+    output = proc.communicate(b'yes\n')[0]  # send 1 to test.exe 
+    print(output)
     client = TelegramClient(phone_number, api_id, api_hash)
     client.session.report_errors = False
     client.connect()
     message="successfully logged out"
     change=False
+
     context={"message":message}
     return render(request,"signout.html",context)
